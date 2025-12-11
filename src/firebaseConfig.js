@@ -9,3 +9,4 @@ appId: "1:722972485578:web:d28c952cc040c78b2dd133" ,
 };
 
 export default firebaseConfig
+export { rtdb };
