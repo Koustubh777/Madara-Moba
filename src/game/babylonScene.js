@@ -71,7 +71,7 @@ scene.useAbility = (ability)=>{
   heroes[user.uid] = localHero
 
   const speed = 0.3
-  let input = {up:false, down:false, left:false, right:false}
+  let movementInput = { up:false, down:false, left:false, right:false }
 
   // Update loop
  engine.runRenderLoop(()=>{
