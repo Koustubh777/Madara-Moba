@@ -1,9 +1,11 @@
 {
-apiKey: "REPLACE_API_KEY",
-authDomain: "REPLACE_AUTH_DOMAIN",
-projectId: "REPLACE_PROJECT_ID",
-storageBucket: "REPLACE_STORAGE_BUCKET",
-messagingSenderId: "REPLACE_MSG_SENDER_ID",
-appId: "REPLACE_APP_ID",
-databaseURL: "REPLACE_DB_URL" // for Realtime DB
-}
+apiKey: "AIzaSyBYh0X-ClFEmNs3o2uXjEgyWYSq4Q8R-4Y",
+authDomain: "madara-moba-e9ece.firebaseapp.com",
+projectId: "madara-moba-e9ece",
+storageBucket: "madara-moba-e9ece.firebasestorage.app",
+messagingSenderId: "722972485578",
+appId: "1:722972485578:web:d28c952cc040c78b2dd133" ,
+  databaseURL: "https://madara-moba-e9ece-default-rtdb.firebaseio.com/"
+};
+
+export default firebaseConfig
