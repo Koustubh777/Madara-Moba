@@ -93,34 +93,4 @@ export function createScene(canvas, user, room){
 
   window.addEventListener('resize', ()=> engine.resize())
   return scene
-export function createScene(canvas, user, room){
-  ...
-  let input = {x:0, z:0}
-
-  // expose functions for HUD
-  scene.updateLocalMovement = (dx, dz)=>{
-    input.x = dx
-    input.z = dz
-  }
-
-  scene.useAbility = (ability)=>{
-    console.log(user.displayName + " used " + ability)
-    // TODO: trigger particle effects, damage, cooldowns
-  }
-
-  // Update loop
-  engine.runRenderLoop(()=>{
-    localHero.position.x += input.x
-    localHero.position.z += input.z
-
-    // send updated position to RTDB
-    set(playerRef.child(user.uid), {
-      x: localHero.position.x,
-      z: localHero.position.z
-    })
-
-    scene.render()
-  })
-  ...
 }
-
