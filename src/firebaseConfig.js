@@ -1,4 +1,4 @@
-{
+export const firebaseConfig = {
 apiKey: "AIzaSyBYh0X-ClFEmNs3o2uXjEgyWYSq4Q8R-4Y",
 authDomain: "madara-moba-e9ece.firebaseapp.com",
 projectId: "madara-moba-e9ece",
