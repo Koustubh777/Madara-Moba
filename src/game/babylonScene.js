@@ -7,6 +7,19 @@ export function createScene(canvas, user, room){
   const engine = new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true })
   const scene = new BABYLON.Scene(engine)
   scene.clearColor = new BABYLON.Color4(0.8,0.9,1,1)
+  let input = {x:0, z:0}
+
+// expose functions for HUD
+scene.updateLocalMovement = (dx, dz)=>{
+  input.x = dx
+  input.z = dz
+}
+
+scene.useAbility = (ability)=>{
+  console.log(user.displayName + " used " + ability)
+  // TODO: trigger particle effects, damage, cooldowns
+}
+
 
   // Top-down camera
   const camera = new BABYLON.ArcRotateCamera('cam', Math.PI/2, Math.PI/2.6, 40, new BABYLON.Vector3(0,0,0), scene)
@@ -60,37 +73,17 @@ export function createScene(canvas, user, room){
   const speed = 0.3
   let input = {up:false, down:false, left:false, right:false}
 
-  // Keyboard controls for testing on PC
-  window.addEventListener('keydown', e=>{
-    if(e.key==='w') input.up=true
-    if(e.key==='s') input.down=true
-    if(e.key==='a') input.left=true
-    if(e.key==='d') input.right=true
-  })
-  window.addEventListener('keyup', e=>{
-    if(e.key==='w') input.up=false
-    if(e.key==='s') input.down=false
-    if(e.key==='a') input.left=false
-    if(e.key==='d') input.right=false
-  })
-
   // Update loop
-  engine.runRenderLoop(()=>{
-    // move local hero
-    if(input.up) localHero.position.z += speed
-    if(input.down) localHero.position.z -= speed
-    if(input.left) localHero.position.x -= speed
-    if(input.right) localHero.position.x += speed
+ engine.runRenderLoop(()=>{
+  localHero.position.x += input.x
+  localHero.position.z += input.z
 
-    // send updated position to RTDB
-    set(playerRef.child(user.uid), {
-      x: localHero.position.x,
-      z: localHero.position.z
-    })
-
-    scene.render()
+  // send updated position to RTDB
+  set(playerRef.child(user.uid), {
+    x: localHero.position.x,
+    z: localHero.position.z
   })
 
-  window.addEventListener('resize', ()=> engine.resize())
-  return scene
+  scene.render()
+})
 }
