@@ -1,6 +1,6 @@
 import * as BABYLON from 'babylonjs'
 import 'babylonjs-loaders'
-import { rtdb } from '../firebaseConfig'
+import { rtdb } from '../firebaseConfig.js'
 import { ref, set, onValue } from 'firebase/database'
 
 export function createScene(canvas, user, room){
