@@ -79,10 +79,12 @@ scene.useAbility = (ability)=>{
   localHero.position.z += input.z
 
   // send updated position to RTDB
-  set(playerRef.child(user.uid), {
-    x: localHero.position.x,
-    z: localHero.position.z
-  })
+  import { ref, set } from "firebase/database";
+
+set(ref(rtdb, `games/${room.id}/positions/${user.uid}`), {
+  x: localHero.position.x,
+  z: localHero.position.z
+});
 
   scene.render()
 })
