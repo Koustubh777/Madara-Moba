@@ -74,12 +74,18 @@ scene.useAbility = (ability)=>{
   let movementInput = { up:false, down:false, left:false, right:false }
 
   // Update loop
- engine.runRenderLoop(()=>{
-  localHero.position.x += input.x
-  localHero.position.z += input.z
+engine.runRenderLoop(() => {
+  localHero.position.x += input.x;
+  localHero.position.z += input.z;
 
-  // send updated position to RTDB
-  import { ref, set } from "firebase/database";
+  // send updated position
+  set(ref(rtdb, `games/${room.id}/positions/${user.uid}`), {
+    x: localHero.position.x,
+    z: localHero.position.z
+  });
+
+  scene.render();
+});
 
 set(ref(rtdb, `games/${room.id}/positions/${user.uid}`), {
   x: localHero.position.x,
